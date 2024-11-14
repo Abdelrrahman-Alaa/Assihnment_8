@@ -58,10 +58,18 @@ var quotes = [
   },
 ];
 
-function displayRandomQuote() {
-  var randomIndex = Math.floor(Math.random() * quotes.length);
-  var randomQuote = quotes[randomIndex];
+var lastIndex = -1;
 
+function displayRandomQuote() {
+  var randomIndex;
+
+  do {
+    randomIndex = Math.floor(Math.random() * quotes.length);
+  } while (randomIndex === lastIndex);
+
+  lastIndex = randomIndex;
+
+  var randomQuote = quotes[randomIndex];
   document.getElementById("quoteText").innerText = randomQuote.qoute;
   document.getElementById("quoteAuthor").innerText = `${randomQuote.author}`;
 }
